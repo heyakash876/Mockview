@@ -32,8 +32,14 @@ const averageRating = (totalRating / feedbackList.length).toFixed(1);
 
     return(
     <div className='p-10'>
+       {feedbackList?.length==0? 
+        <h2 className='text-gray-600 text-xl font-bold'>You don't have any feedbacks as of now.</h2>:
+        <>
         <h2 className='text-3xl font-bold text-green-600'>Congratulations! You successfully completed the mock interview.</h2>
         <h2 className='font-semibold text-2xl'>Here is your feedback...</h2>
+
+       
+       
        <h2 className='text-blue-600 text-lg my-3'>Your overall rating:  <strong>{averageRating}/5</strong></h2>
        <h2 className='text-sm text-gray-500' >Find below the interview questions with their correct answer and how you answered them:</h2>
        {feedbackList&&feedbackList.map((item,index)=>( <Collapsible className='mt-7' key={index}>
@@ -47,8 +53,9 @@ const averageRating = (totalRating / feedbackList.length).toFixed(1);
    </div>
   </CollapsibleContent>
 </Collapsible>))}
+</>}
       <Button onClick={()=>router.replace('/dashboard')}>Go Home</Button>
-
+      
     </div>
   )
 }
