@@ -11,9 +11,11 @@ import Link from 'next/link';
 function Interview({params}) {
     const[interviewData,setInterviewData]=useState("");
     const[webcamEnable,SetWebcamEnable]=useState(false);
+    const[mockid,setmockid]=useState();
     const unparam = use(params)
     useEffect(()=>{
-         console.log(unparam.interviewId)
+         console.log("intId",unparam.interviewId)
+        
         GetInterviewDetails();
     },[])
     const GetInterviewDetails=async()=>{
@@ -23,7 +25,13 @@ function Interview({params}) {
         setInterviewData(result[0]);
         console.log(result[0]);
         
+        
+        setmockid(unparam.interviewId);
+       
+        
     }
+    console.log("setmockid:",mockid);
+
   return (
     <div className='my-10 flex  flex-col items-center'>
         <h2 className='font-bold text-2xl'>Let's get started</h2>
