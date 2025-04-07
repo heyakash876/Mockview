@@ -32,7 +32,7 @@ function RecordAnswerSection(
     setResults
 
   } = useSpeechToText({
-    continuous: false,
+    continuous: true,
     useLegacyResults: false,
   });
   useEffect(() => {
@@ -64,6 +64,7 @@ function RecordAnswerSection(
   
   const UpdateUserAnswer=async()=>{
     setloading(true);
+    try {
     const feedbackPrompt =
     "Question:" +
     mockInterviewques[activeQuesIndex]?.question +
@@ -76,7 +77,8 @@ function RecordAnswerSection(
   const mockJsonResp = result.response
   .text()
   .replace('```json', '')
-  .replace('```', '');
+  .replace('```', '')
+  .trim();
 console.log(mockJsonResp);
   
   const JsonFeedbackResp = JSON.parse(mockJsonResp);
@@ -91,17 +93,17 @@ console.log(mockJsonResp);
     createdAt: moment().format("DD-MM-YYYY"),
   });
   if (resp) {
-    toast("Answer recorded");
-    setUserAnswer('');
+    toast.success("Answer recorded ✅");
+    setUserAnswer("");
     setResults([]);
   }
-  setResults([]);
+} catch (err) {
+  console.error("Failed to record answer or parse JSON:", err);
+  toast.error("Failed to record answer. Please try again.");
+} finally {
   setloading(false);
-  console.log(userAnswer?.length);
-  console.log(userAnswer);
-
-  }
-
+}
+  };
   return (
     <div className="flex items-center justify-center flex-col">
       <div className=" mt-20 flex flex-col justify-center items-center bg-secondary  rounded-lg p-5">

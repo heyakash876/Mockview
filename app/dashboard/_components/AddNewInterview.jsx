@@ -34,7 +34,7 @@ function AddNewInterview() {
     setloading(true)
     e.preventDefault()
     console.log(jobDesc,jobExp,jobPosition)
-    const InputPrompt="Give me "+process.env.NEXT_PUBLIC_QUES_COUNT+" interview ques and answers in json format that can be asked in an interview the answer should include how the person should answer it personifiying the person ,the ques and ans should be based on information Job role: "+jobPosition+" , Job description: "+jobDesc+" ,years of experience : "+jobExp+" , also the json fields should be question and answers only"
+    const InputPrompt="Give me "+process.env.NEXT_PUBLIC_QUES_COUNT+" interview ques and answers in json format that can be asked in an interview the answer should include how the person should answer it personifiying the person ,the ques and ans should be based on information Job role: "+jobPosition+" , Job description: "+jobDesc+" ,years of experience : "+jobExp+" , also the json fields should be question and answers only. Please follow strict json formatting rules."
     const result= await chatSession.sendMessage(InputPrompt);
     const MockJSonResp=(result.response.text()).replace('```json','').replace('```','')
     console.log(JSON.parse(MockJSonResp));
