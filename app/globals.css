@@ -103,44 +103,71 @@
   }
 
   .glass-button {
-    @apply relative overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(var(--primary-rgb), 0.3)];
+    @apply relative overflow-hidden transition-all duration-300;
+    box-shadow: 0 0 20px oklch(0.65 0.25 260 / 0.3);
   }
 
   .neon-border {
-    @apply border border-primary/30 shadow-[0_0_15px_rgba(var(--primary-rgb), 0.1)] hover:border-primary/60 hover:shadow-[0_0_25px_rgba(var(--primary-rgb), 0.2)];
+    @apply border border-primary/30;
+    box-shadow: 0 0 15px oklch(0.65 0.25 260 / 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .neon-border:hover {
+    @apply border-primary/60;
+    box-shadow: 0 0 25px oklch(0.65 0.25 260 / 0.2);
   }
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-indigo-400 to-purple-400;
   }
+}
 
-  .markdown-content {
-    @apply space-y-3;
-  }
+/* Markdown Content Styling - Outside layers for maximum compatibility */
+.markdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
 
-  .markdown-content strong {
-    @apply font-bold text-primary;
-  }
+.markdown-content strong {
+  font-weight: 700;
+  color: var(--primary);
+}
 
-  .markdown-content ul {
-    @apply list-disc ml-6 space-y-1 my-2;
-  }
+.markdown-content ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 
-  .markdown-content ol {
-    @apply list-decimal ml-6 space-y-1 my-2;
-  }
+.markdown-content ul li {
+  margin-bottom: 0.25rem;
+}
 
-  .markdown-content li {
-    @apply text-foreground/80;
-  }
+.markdown-content ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 
-  .markdown-content p {
-    @apply leading-relaxed;
-  }
+.markdown-content li {
+  color: oklch(var(--foreground) / 0.8);
+}
 
-  .markdown-content code {
-    @apply bg-white/10 px-1.5 py-0.5 rounded text-xs font-mono text-primary;
-  }
+.markdown-content p {
+  line-height: 1.625;
+}
+
+.markdown-content code {
+  background-color: oklch(1 1 1 / 0.1);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--primary);
 }
 
 @keyframes float {
