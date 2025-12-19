@@ -2,15 +2,51 @@ import React from 'react'
 import { Button } from '../../../components/ui/button'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Calendar, Briefcase, ChevronRight } from 'lucide-react'
+import { Calendar, Briefcase, ChevronRight, Trash2, Loader2 } from 'lucide-react'
+import { db } from '@/utils/db'
+import { MockInterview, UserAnswer } from '@/utils/schema'
+import { eq } from 'drizzle-orm'
+import { toast } from 'sonner'
+import { useState } from 'react'
 
-function InterviewItemCard({ interview }) {
+function InterviewItemCard({ interview, refreshData }) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   const onStart = () => {
     router.push('/dashboard/interview/' + interview?.mockId)
   }
   const onFeedbackPress = () => {
     router.push('/dashboard/interview/' + interview.mockId + '/feedback');
+  }
+
+  const onDeletePress = async () => {
+    setLoading(true);
+    try {
+      // Delete associated answers first (foreign key reference logic)
+      await db.delete(UserAnswer).where(eq(UserAnswer.mockIdRef, interview.mockId));
+      // Delete the interview session
+      await db.delete(MockInterview).where(eq(MockInterview.mockId, interview.mockId));
+
+      toast.success('Interview deleted successfully');
+      refreshData && refreshData();
+    } catch (error) {
+      console.error('Delete error:', error);
+      toast.error('Failed to delete interview');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const onDelete = (e) => {
+    e.stopPropagation();
+    toast.warning('Are you sure?', {
+      description: 'This will permanently delete this interview session.',
+      action: {
+        label: 'Delete',
+        onClick: onDeletePress
+      },
+    });
   }
 
   return (
@@ -22,9 +58,22 @@ function InterviewItemCard({ interview }) {
         <div className='bg-primary/10 p-2 rounded-lg'>
           <Briefcase className='w-5 h-5 text-primary' />
         </div>
-        <span className='text-[10px] text-muted-foreground bg-white/5 px-2 py-1 rounded-full'>
-          ID: {interview?.mockId?.slice(0, 8)}
-        </span>
+        <div className='flex items-center gap-2'>
+          <span className='text-[10px] text-muted-foreground bg-white/5 px-2 py-1 rounded-full'>
+            ID: {interview?.mockId?.slice(0, 8)}
+          </span>
+          <button
+            onClick={onDelete}
+            disabled={loading}
+            className='p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-500/70 hover:text-red-500 transition-all border border-red-500/10'
+          >
+            {loading ? (
+              <Loader2 className='w-4 h-4 animate-spin' />
+            ) : (
+              <Trash2 className='w-4 h-4' />
+            )}
+          </button>
+        </div>
       </div>
 
       <h2 className='font-bold text-lg text-foreground group-hover:text-primary transition-colors line-clamp-1'>

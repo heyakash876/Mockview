@@ -54,6 +54,7 @@ function InterviewList() {
             >
               <InterviewItemCard
                 interview={interview}
+                refreshData={GetInterviewList}
               />
             </motion.div>
           ))}
