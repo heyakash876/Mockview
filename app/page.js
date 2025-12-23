@@ -67,14 +67,20 @@ export default function LandingPage() {
             The Future of Interview Prep
           </motion.div>
 
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className='text-5xl md:text-7xl lg:text-8xl font-black text-gradient leading-tight tracking-tight'
-          >
-            Master Your Next <br />
-            <span className='inline-block transform hover:scale-105 transition-transform cursor-default'>Tech Interview</span>
-          </motion.h1>
+         <motion.h1
+  initial={{ y: 20, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight"
+>
+  <span className="text-gradient">
+    Master Your Next
+  </span>
+  <br />
+  <span className="inline-block text-gradient transform hover:scale-105 transition-transform cursor-default">
+    Tech Interview
+  </span>
+</motion.h1>
+
 
           <motion.p
             initial={{ y: 20, opacity: 0 }}
@@ -187,7 +193,7 @@ export default function LandingPage() {
           <Image src='/logo.svg' width='120' height='30' alt='logo' className='opacity-50 grayscale brightness-200' />
         </div>
         <p className='text-muted-foreground text-sm flex items-center justify-center gap-4'>
-          <span>© 2025 Mockview AI</span>
+          <span>© 2025<Link href='https://github.com/heyakash876' className='hover:text-primary transition-colors'> heyakash876 </Link></span>
           <span className='w-1 h-1 bg-white/20 rounded-full' />
           <Link href='#' className='hover:text-primary transition-colors'>Privacy Policy</Link>
           <span className='w-1 h-1 bg-white/20 rounded-full' />
