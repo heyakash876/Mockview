@@ -71,6 +71,9 @@ export default function SignInPage() {
                 <Mail className='absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors' />
                 <input
                   type='email'
+                  name='email'
+                  id='email'
+                  autoComplete='email'
                   required
                   placeholder='name@example.com'
                   className='w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all text-sm'
@@ -88,6 +91,9 @@ export default function SignInPage() {
                 <Lock className='absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors' />
                 <input
                   type='password'
+                  name='password'
+                  id='password'
+                  autoComplete='current-password'
                   required
                   placeholder='••••••••'
                   className='w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all text-sm'

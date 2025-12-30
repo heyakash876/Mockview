@@ -68,6 +68,9 @@ export default function SignUpPage() {
                 <User className='absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors' />
                 <input
                   type='text'
+                  name='name'
+                  id='name'
+                  autoComplete='name'
                   required
                   placeholder='John Doe'
                   className='w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all text-sm'
@@ -82,6 +85,9 @@ export default function SignUpPage() {
                 <Mail className='absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors' />
                 <input
                   type='email'
+                  name='email'
+                  id='email'
+                  autoComplete='email'
                   required
                   placeholder='name@example.com'
                   className='w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all text-sm'
@@ -96,6 +102,9 @@ export default function SignUpPage() {
                 <Lock className='absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors' />
                 <input
                   type='password'
+                  name='password'
+                  id='password'
+                  autoComplete='new-password'
                   required
                   placeholder='Create a secure password'
                   className='w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all text-sm'
